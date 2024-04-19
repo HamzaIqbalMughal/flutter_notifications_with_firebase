@@ -29,5 +29,11 @@ class NotificationServices {
     return token!;
   }
 
+  void isTokenRefresh() {
+    messaging.onTokenRefresh.listen((event) {
+      event.toString();
+      print('refresh');
+    });
+  }
 
 }

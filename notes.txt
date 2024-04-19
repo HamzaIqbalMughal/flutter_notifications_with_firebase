@@ -10,6 +10,12 @@ Add the following dependencies into pubspec
     NotificationSettings settings = await messaging.requestPermission();
     // if user declines the above permission, we can not get it until user accepts it manually from aap settings.
 
-=> What is FCM Token or Device Token
+=> What is FCM (Firebase cloud Messaging) Token or Device Token
     -> Firebase Actually Sends notifications on the basis on token (not on user id)
+    -> Token can also expire
+    -> notificationServices.getDeviceToken().then((value) {
+             print('Device token '+value);
+           });
     ->
+
+=>
