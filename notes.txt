@@ -1,0 +1,15 @@
+Add the following dependencies into pubspec
+  firebase_core: ^2.30.0
+  firebase_messaging: ^14.8.2
+  flutter_local_notifications: ^17.0.1
+  app_settings: ^5.1.1  // is used to
+
+
+
+=> Getting Firebase Notification Permission from user
+    NotificationSettings settings = await messaging.requestPermission();
+    // if user declines the above permission, we can not get it until user accepts it manually from aap settings.
+
+=> What is FCM Token or Device Token
+    -> Firebase Actually Sends notifications on the basis on token (not on user id)
+    ->
