@@ -1,10 +1,97 @@
 
+import 'dart:io';
+import 'dart:math';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationServices {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
+  // ***************************************************************************
+  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  void initLocalNotifications(BuildContext context, RemoteMessage message) async{
+    var androidInitializationSettins = AndroidInitializationSettings('@mipmap/ic_launcer');
+    var iOSInitializationSettins = DarwinInitializationSettings();
+
+    var initializationSetting = InitializationSettings(
+        android: androidInitializationSettins,
+        iOS: iOSInitializationSettins
+    );
+
+    // here is the exceptopn
+    await _flutterLocalNotificationsPlugin.initialize(
+      initializationSetting,
+      onDidReceiveBackgroundNotificationResponse: (payload){
+
+      }
+    );
+  }
+
+  void firebaseInit(BuildContext context){
+    // the below listen function is catching the notification from firebase
+    FirebaseMessaging.onMessage.listen((message) {
+      if(kDebugMode){
+        // print(message.notification!.title.toString());
+        // print(message.notification!.body.toString());
+      }
+      if (Platform.isAndroid) {
+        initLocalNotifications(context, message);
+        showNotification(message);
+      }
+
+      showNotification(message);
+    });
+  }
+
+  Future<void> showNotification(RemoteMessage message) async{
+
+    // ------------------ The below is for Android -------------------
+    AndroidNotificationChannel channel = AndroidNotificationChannel(
+        Random.secure().nextInt(10000).toString(),
+      'High Importance Notifications',
+      importance: Importance.max
+    );
+
+    AndroidNotificationDetails androidNotificationDetails = AndroidNotificationDetails(
+        channel.id.toString(),
+        channel.name.toString(),
+      channelDescription: 'your channel description',
+      importance: Importance.high,
+      priority: Priority.high,
+      ticker: 'ticker'
+    );
+    // The above is for Android -------------------
+
+    // ------------------ The below is for iOS -------------------
+    DarwinNotificationDetails darwinNotificationDetails = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+    );
+
+    NotificationDetails notificationDetails = NotificationDetails(
+      android: androidNotificationDetails,
+      iOS: darwinNotificationDetails
+    );
+
+    Future.delayed(Duration.zero, (){
+      _flutterLocalNotificationsPlugin.show(
+        0,
+        message.notification!.title.toString(),
+        message.notification!.body.toString(),
+          notificationDetails
+      );
+    });
+    // The above is for iOS ------------------
+
+  }
+
+  // ***************************************************************************
   void requestNotificationPermission() async{
     NotificationSettings settings = await messaging.requestPermission(
       alert: true, // if it is false notification can not be displayed,
