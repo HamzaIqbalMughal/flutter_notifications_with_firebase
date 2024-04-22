@@ -15,12 +15,12 @@ class NotificationServices {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   void initLocalNotifications(BuildContext context, RemoteMessage message) async{
-    var androidInitializationSettins = AndroidInitializationSettings('@mipmap/ic_launcer');
-    var iOSInitializationSettins = DarwinInitializationSettings();
+    var androidInitializationSettings = AndroidInitializationSettings('ic_launcher');
+    var iOSInitializationSettings = DarwinInitializationSettings();
 
     var initializationSetting = InitializationSettings(
-        android: androidInitializationSettins,
-        iOS: iOSInitializationSettins
+        android: androidInitializationSettings,
+        iOS: iOSInitializationSettings
     );
 
     // here is the exceptopn
@@ -44,7 +44,7 @@ class NotificationServices {
         showNotification(message);
       }
 
-      showNotification(message);
+      // showNotification(message);
     });
   }
 
