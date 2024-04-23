@@ -15,33 +15,49 @@ class NotificationServices {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   void initLocalNotifications(BuildContext context, RemoteMessage message) async{
-    var androidInitializationSettings = AndroidInitializationSettings('ic_launcher');
+
+
+    var androidInitializationSettings = AndroidInitializationSettings('app_icon');
     var iOSInitializationSettings = DarwinInitializationSettings();
+
 
     var initializationSetting = InitializationSettings(
         android: androidInitializationSettings,
-        iOS: iOSInitializationSettings
+        iOS: iOSInitializationSettings,
+      macOS: null
     );
 
-    // here is the exceptopn
-    await _flutterLocalNotificationsPlugin.initialize(
-      initializationSetting,
-      onDidReceiveBackgroundNotificationResponse: (payload){
+    try{
+      // here is the exception
+      bool? isInitialized = await _flutterLocalNotificationsPlugin.initialize(
+          initializationSetting,
+          // onDidReceiveBackgroundNotificationResponse: (payload){
+          //
+          // },
+          onDidReceiveNotificationResponse: (payload){
 
+          }
+      );
+      if(isInitialized == true) {
+        print('Initization Successfull');
       }
-    );
+    }catch(e){
+      print('Error initializing local notifications plugin: $e');
+    }
+
   }
 
   void firebaseInit(BuildContext context){
     // the below listen function is catching the notification from firebase
     FirebaseMessaging.onMessage.listen((message) {
       if(kDebugMode){
-        // print(message.notification!.title.toString());
-        // print(message.notification!.body.toString());
+        print(message.notification!.title.toString());
+        print(message.notification!.body.toString());
       }
       if (Platform.isAndroid) {
         initLocalNotifications(context, message);
         showNotification(message);
+        // await showNotification(message);
       }
 
       // showNotification(message);
@@ -73,6 +89,7 @@ class NotificationServices {
       presentBadge: true,
       presentSound: true,
     );
+    // The above is for iOS ------------------
 
     NotificationDetails notificationDetails = NotificationDetails(
       android: androidNotificationDetails,
@@ -87,7 +104,6 @@ class NotificationServices {
           notificationDetails
       );
     });
-    // The above is for iOS ------------------
 
   }
 
