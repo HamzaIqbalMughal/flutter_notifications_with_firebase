@@ -22,6 +22,9 @@ Add the following dependencies into pubspec
 
 => Showing Notification when app is not visible (background),
 
-=>
+=> Redirect user to specific page/screen on click on notification
+    -> while sending notification from firebase, we can set notification title and body
+    -> some addition custom data can also be sent with in notification know as payload
 
+=>
 
