@@ -78,7 +78,9 @@ class NotificationServices {
         channel.name.toString(),
       channelDescription: 'your channel description',
       importance: Importance.high,
-      priority: Priority.high,
+        priority: Priority.high,
+      //   importance: Importance.max,
+      // priority: Priority.max,
       ticker: 'ticker'
     );
     // The above is for Android -------------------
@@ -98,7 +100,7 @@ class NotificationServices {
 
     Future.delayed(Duration.zero, (){
       _flutterLocalNotificationsPlugin.show(
-        0,
+        1,
         message.notification!.title.toString(),
         message.notification!.body.toString(),
           notificationDetails

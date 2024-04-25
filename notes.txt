@@ -18,5 +18,10 @@ Add the following dependencies into pubspec
            });
     ->
 
-=> Showing Notification when appn is in background
+=> Showing Notification when app is active/visible (foreground),
+
+=> Showing Notification when app is not visible (background),
+
+=>
+
 
