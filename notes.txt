@@ -26,5 +26,10 @@ Add the following dependencies into pubspec
     -> while sending notification from firebase, we can set notification title and body
     -> some addition custom data can also be sent with in notification know as payload
 
+=> Sending Notification from one device to another device in flutter
+    -> First Enable Cloud Messaging API (Legacy) from firebase
+    -> Now copy server key from cloud Messaging section
+    ->
+
 =>
 
