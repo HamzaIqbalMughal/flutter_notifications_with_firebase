@@ -32,5 +32,5 @@ Add the following dependencies into pubspec
     ->
 
 => Sending firebase Push Notification using Postman
-    ->
 
+=> used https://www.pushtry.com/ for online push notifications

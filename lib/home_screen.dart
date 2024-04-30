@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'body' : 'Hello there other device'
                 },
                 'data': {
-                  'chat': 'msg',
+                  'type': 'msg',
                   'id': 'hamza123'
                 }
               };
