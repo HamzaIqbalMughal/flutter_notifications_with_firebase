@@ -47,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               var data = {
                 // 'to' : value.toString(),  // value contains token of this device (sending notification to itself)
                 'to' : 'cBXHTKdqRfWMdP0B7m_YNm:APA91bEf2el0k0REvV7ptYIQPHhhF3VSu7---ow-qeeqs7WDpizm8x6BO6bFfjtSi_nKhqSrUF6BUW1ll1LkQ8B2G0VJSn2vSF_mxE3kdDsPU9ajq_V6BcLO9hPXYMTDl_tX8NY2SAUI',
+                // 'to' : 'dJzr-EVrSNSynzd8uUu95w:APA91bEMc0pSbTu71OC7BALwi15F5RGJzZ-8vCQ6CMdKrR_NxqvM8nJ6MWlrRzdZ97hSgTBV2UITz-g3edLPyuVOrXtqnv8BRVNPkpZQQ2exIJmYIwdal_7K1WYRVuV-jN0v0iRdJXN7',
                 'priority' : 'high',
                 'notification' : {
                   'title' : 'Noti from device 1',

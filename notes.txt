@@ -31,5 +31,6 @@ Add the following dependencies into pubspec
     -> Now copy server key from cloud Messaging section
     ->
 
-=>
+=> Sending firebase Push Notification using Postman
+    ->
 
