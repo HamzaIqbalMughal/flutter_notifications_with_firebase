@@ -34,3 +34,12 @@ Add the following dependencies into pubspec
 => Sending firebase Push Notification using Postman
 
 => used https://www.pushtry.com/ for online push notifications
+
+=> Learned following things:
+1. How to get permission from user
+2. what is FCM token
+3. How to show notification when app is in foreground and background, also when app is killed
+4. Redirecting User to specific page/screen by sending some data with notification, which tells us about what kind of notification it is
+5. Sending Notification from 1 device to another using token
+6. Sending firebase Push Notification using Postman
+7. used https://www.pushtry.com/ for online push notifications
